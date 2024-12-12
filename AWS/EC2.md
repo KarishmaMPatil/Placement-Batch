@@ -1,4 +1,4 @@
-# Amazon EC2 Interview Questions and Conversational Answers
+# Amazon EC2 Interview Questions 
 
 ## 1. What is an EC2 instance type, and how do you choose the right one for your application?
 **Answer:**

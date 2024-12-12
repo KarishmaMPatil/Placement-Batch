@@ -1,4 +1,4 @@
-# Auto Scaling Interview Questions - Conversation Style
+# Auto Scaling Interview Questions 
 
 ## **Primary Components of AWS Auto Scaling**
 
