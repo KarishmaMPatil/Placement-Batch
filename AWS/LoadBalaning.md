@@ -1,4 +1,4 @@
-# Load Balancing: Interview Q&A in Conversational Style
+# Load Balancing: Interview Q&A 
 
 ## 1. When would you choose an Application Load Balancer (ALB) over a Network Load Balancer (NLB), and vice versa?
 
