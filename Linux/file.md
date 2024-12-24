@@ -175,16 +175,16 @@ Example: # e2label /dev/sdb1 oradisk
 # mount -l (view labels of mounted partitions)
 ```
 **21. How to mount a partition temporarily or permanently using label?**
-# mount LABEL=<label name> <mount point>
+ mount LABEL=<label name> <mount point>
 Example: # mount LABEL=oradisk /mnt/oracle (to mount the oradisk label on /mnt/oracle directory)
-# vim /etc/fstab
+#vim /etc/fstab
 LABEL=oradisk /mnt/oracle ext4 defaults 0 0
 Esc+:+wq! (to save and exit the file)
  mount -a (to mount the partitions)
-# mount (to verify whether it is mounted or not)
+ mount (to verify whether it is mounted or not)
 
 **22. How to mount the partition permanently using block id (UUID)?**
-# blkid <partition name or disk name> (to see the UUID or block id of that partition)
+blkid <partition name or disk name> (to see the UUID or block id of that partition)
 Example: # blkid /dev/sdb2 (to see the UUID or block id of the /dev/sdb2 partition)
 Copy that UUID with mouse and paste it in /etc/fstab file and make an entry about that.
 Example: # vim /etc/fstab
