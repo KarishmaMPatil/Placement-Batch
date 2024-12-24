@@ -1,34 +1,4 @@
- 1. Managing Partitions and File Systems 2 -
-   - 2. Logical Volume Management and RAID Levels 9 -
-   - 3. User and Group Administration, SUDO and Permissions 21 -
-   - 4. Network Configuration and Troubleshooting 36 -
-   - 5. Managing SELinux 48 -
-   - 6. Booting Procedure and Kernel parameters 50 -
-   - 7. Job Automation 56 -
-   - 8. Administrating Remote Systems (SSH) 61 -
-   - 9. Memory Management (Swap) 67 -
-- 10. Software Management 70 -
-- 11. Backup and Restore 76 -
-- 12. Managing Installed Services 81 -
-- 13. Managing Process 84 –
-- 14. FTP (File Transfer Protocol) Server 94 –
-- 15. NFS (Network File System) Server, Autofs and LDAP Client 98 –
-- 16. Samba Server 110 –
-- 17. NTP (Network Time Protocol) or Chrony 114 –
-- 18. DNS (Domain Naming System) 115 –
-- 19. DHCP (Dynamic Host Configuration Protocol) 125 –
-- 20. Web Server (Apache) 128 –
-- 21. Mail Server 142 –
-- 22. iSCSI (Remote Storage) 146 –
-- 23. MySQL Server and MariaDB 149 –
-- 24. Log Server and Log Files 152 –
-- 25. Configuring IPtables and Firewall 155 –
-- 26. Virtualization 160 –
-- 27. General Questions 162 –
-- 28. Kickstart Installation and PXE (Network) Installation 175 –
-- 29. Veritas Volume Manager and Veritas Cluster 182 –
-- 30. RedHat Cluster 196 –
-- 31. Examples of top command 202 -
+
 
 
 **1. Managing Partitions and File Systems
