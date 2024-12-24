@@ -253,11 +253,11 @@ So, before running the **fsck** command the file system should be unmounted.
 By using the **# gparted** command we can extend the root partition; otherwise, we cannot extend the file systems which are not on LVM.
 
 **32. How to unmount a file system forcefully?**
-# umount -f <mount point>
-# fuser -ck <mount point>
+ umount -f <mount point>
+fuser -ck <mount point>
 
 **33. How to know the file system type?**
-# df -hT (command gives the file system type information)
+df -hT (command gives the file system type information)
 
 **34. How to know which file system occupies more space and the top 10 file systems?**
 # df -h <device or partition name> | sort -r | head -10
