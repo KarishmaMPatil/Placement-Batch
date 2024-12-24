@@ -260,10 +260,10 @@ fuser -ck <mount point>
 df -hT (command gives the file system type information)
 
 **34. How to know which file system occupies more space and the top 10 file systems?**
-# df -h <device or partition name> | sort -r | head -10
+ df -h <device or partition name> | sort -r | head -10
 
 **35. What is the command to know the mounted file systems?**
-# mount or # cat /etc/mtab
+ mount or # cat /etc/mtab
 
 **36. How to know whether the file system is corrupted or not?**
 First unmount the file systems and then run the **fsck** command on that file system.
@@ -273,10 +273,10 @@ If the normal or not related to O/S file system is corrupted, first unmount that
 If the normal or not related to O/S file system is crashed, then restore it from the recent backup. If the O/S related file system is crashed, then boot the system with CDROM in single-user mode and restore it from the recent backup.
 
 **38. How to create a file with a particular size?**
-# dd if=/dev/zero of=/orafile bs=1MB count=500 (to create 500MB size /orafile with 4KB block size)
+dd if=/dev/zero of=/orafile bs=1MB count=500 (to create 500MB size /orafile with 4KB block size)
 
 **39. How to find how many disks are attached to the system?**
-# fdisk -l (to see how many disks are attached to the system)
+fdisk -l (to see how many disks are attached to the system)
 
 **40. What is journaling?**
 It is a dedicated area in the file system where all the changes are tracked when the system crashes. So the possibility of the file system corruption or crashes is less because of this journaling feature.
