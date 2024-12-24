@@ -208,13 +208,13 @@ Enter the partition No.: 2 (to change the /dev/sdb2 partition id)
 Enter the id: 82 (to change the partition id Linux to Linux Swap)
 
 Command (m for help): w (to save the changes into the disk)
-# partprobe /dev/sdb (to update the partition table information)
-# mkswap <device or partition name> (to format the partition with swap file system)
+ partprobe /dev/sdb (to update the partition table information)
+ mkswap <device or partition name> (to format the partition with swap file system)
 Example: # mkswap /dev/sdb2 (to format the /dev/sdb2 partition with swap file system)
-# swapon <device or partition name> (to activate the swap space)
+#swapon <device or partition name> (to activate the swap space)
 Example: # swapon /dev/sdb2 (to activate /dev/sdb2 swap space)
-# free -m (to see the swap size)
-# vim /etc/fstab (to make an entry to permanently mount the swap partition)
+#free -m (to see the swap size)
+#vim /etc/fstab (to make an entry to permanently mount the swap partition)
 /dev/sdb2 swap swap defaults 0 0
 Esc+:+wq! (to save and exit)
 
