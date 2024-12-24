@@ -363,3 +363,102 @@ To adjust the reserved space percentage:
     # chmod g+s /var/log/journal
     # killall -USR1 systemd-jjournald
     
+# Logical Volume Management (LVM) Operations
+
+## 6. How to See the Details of the Logical Volumes?
+- **Commands:**
+  - `# lvs` - Displays all logical volumes with less details.
+  - `# lvdisplay` - Displays all logical volumes with more details.
+  - `# lvdisplay <LV name>` - Displays the specified logical volume details.
+  - `# lvscan` - Scans all logical volumes.
+  - `# lvscan <LV name>` - Scans the specified logical volume.
+
+---
+
+## 7. How to Extend the Volume Group?
+- **Steps:**
+  1. Create a new partition using `# fdisk` and set the partition ID to **8e**.
+  2. Save changes and update the partition table using `# partprobe`.
+  3. Create a physical volume using `# pvcreate`.
+  4. Add the partition to the volume group using `# vgextend`.
+
+- **Example:**
+  ```bash
+  # fdisk /dev/sdb
+  Command (m for help): n
+  First cylinder: [Press Enter for default]
+  Last cylinder: +500M
+  Command (m for help): t
+  Select the partition: [Type partition number]
+  Specify the Hexa code: 8e
+  Command (m for help): w
+  # partprobe /dev/sdb
+  # pvcreate /dev/sdb
+  # vgextend <VG name> /dev/sdb
+  # vgdisplay <VG name>
+  ```
+
+---
+
+## 8. How to Extend the Logical Volume and Update Its File System?
+- **Steps:**
+  1. Check current size with `# lvdisplay` and `# df -hT`.
+  2. Increase size using `# lvextend` or `# lvresize`.
+  3. Update the file system using `# resize2fs` or `# xfs_growfs`.
+
+- **Example:**
+  ```bash
+  # df -hT
+  # lvextend -L +<size in MB> /dev/<vgname>/<lvname>
+  # resize2fs /dev/<vgname>/<lvname>
+  # lvdisplay /dev/<vgname>/<lvname>
+  # df -hT
+  ```
+
+---
+
+## 9. How to Reduce the Logical Volume and Update the File System?
+- **Steps:**
+  1. Unmount the file system using `# umount`.
+  2. Check file system consistency using `# e2fsck`.
+  3. Reduce the logical volume using `# lvreduce`.
+  4. Update the file system using `# resize2fs`.
+  5. Remount the file system.
+
+- **Example:**
+  ```bash
+  # umount <file system mount point>
+  # e2fsck <device or partition name>
+  # lvreduce -L -<size in MB> /dev/<vgname>/<lvname>
+  # resize2fs /dev/<vgname>/<lvname>
+  # lvdisplay /dev/<vgname>/<lvname>
+  # mount -a
+  # df -hT
+  ```
+
+---
+
+## 10. How to Move or Migrate the Logical Volume Data from One Physical Volume to Another Physical Volume?
+- **Steps:**
+  1. Access the mount point of the failing physical volume and check the data.
+  2. Verify the size of the physical volume with `# pvs` or `# pvdisplay`.
+  3. Unmount the file system of that physical volume with `# umount`.
+  4. Add a new physical volume (ensure it is the same size or larger).
+  5. Migrate data using `# pvmove`.
+  6. Mount back the logical volume and verify the data.
+  7. Remove the failed physical volume using `# vgreduce`.
+
+- **Example:**
+  ```bash
+  # cd <file system mount point>
+  # ls
+  # pvs <pvname> or # pvdisplay <pvname>
+  # umount <file system mount point>
+  # pvcreate <device or partition name>
+  # vgextend <vgname> <pvname>
+  # pvmove <old pvname> <new pvname>
+  # mount -a
+  # vgreduce <vgname> <failed pvname>
+  # cd <file system mount point>
+  # ls
+  
