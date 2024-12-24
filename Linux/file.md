@@ -196,9 +196,9 @@ Esc+:+wq! (to save and exit)
 (ii) If the size of the RAM is more than 2GB, then the size of the swap = 2GB + RAM size.
 
 **24. How to create a swap partition and mount it permanently?**
-# free -m (to see the present swap size)
-# swapon -s (to see the swap usage)
-# fdisk <disk name> (to make a partition)
+#free -m (to see the present swap size)
+#swapon -s (to see the swap usage)
+#fdisk <disk name> (to make a partition)
 Example: # fdisk /dev/sdb
 Command (m for help): n (to create a new partition)
 First cylinder: (press Enter to take as default value)
