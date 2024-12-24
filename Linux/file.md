@@ -180,7 +180,7 @@ Example: # mount LABEL=oradisk /mnt/oracle (to mount the oradisk label on /mnt/o
 # vim /etc/fstab
 LABEL=oradisk /mnt/oracle ext4 defaults 0 0
 Esc+:+wq! (to save and exit the file)
-# mount -a (to mount the partitions)
+ mount -a (to mount the partitions)
 # mount (to verify whether it is mounted or not)
 
 **22. How to mount the partition permanently using block id (UUID)?**
