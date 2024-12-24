@@ -280,3 +280,86 @@ If the normal or not related to O/S file system is crashed, then restore it from
 
 **40. What is journaling?**
 It is a dedicated area in the file system where all the changes are tracked when the system crashes. So the possibility of the file system corruption or crashes is less because of this journaling feature.
+
+# Linux Filesystem and Superblock Management
+
+### **41. How to repair the Superblock of the file system?**
+If an input/output error occurs when storing data on the hard disk, the Superblock of the file system may become corrupted. To repair or restore the Superblock:
+
+```bash
+# umount <file system mount point>                # Unmount the file system
+# dumpe2fs </dev/vgname/lvname> | grep superblock # List the Superblocks (primary and secondary)
+# e2fsck -b <secondary_superblock> </dev/vgname/lvname> # Restore the damaged Superblock
+# mount -a                                        # Mount the file system
+```
+
+### **42. How to create the file systems with user-specified Superblock reserve space?**
+By default, 5% of a partition is reserved for the Superblock. To create a file system with custom reserve space:
+
+```bash
+# mkfs.ext4 -m <percentage> <partition name>
+```
+
+### **43. How to modify the Superblock reserve space?**
+To adjust the reserved space percentage:
+
+```bash
+# tune2fs -m <percentage> <partition name>
+```
+
+---
+
+### **Important Commands:**
+
+1. **Filesystem Consistency Checks:**
+    ```bash
+    # fsck <partition name>          # Check the consistency of the file system
+    # e2fsck <partition name>        # Check the consistency in interactive mode
+    # e2fsck -p <partition name>     # Check the consistency without interactive mode
+    # fsck -AR -y                    # Run fsck without asking any questions
+    ```
+
+2. **Filesystem Formatting and Metadata:**
+    ```bash
+    # mke2fs -n <partition name>       # View Superblock information
+    # mke2fs -t <file system type> <partition name>  # Format in a specified file system type
+    # blockdev --getbs /dev/sdb1       # Check the block size of /dev/sdb1
+    ```
+
+3. **Filesystem Mounting and Unmounting:**
+    ```bash
+    # umount -a                        # Unmount all file systems except the root
+    # mount -a                         # Mount all file systems with entries in /etc/fstab
+    ```
+
+4. **Filesystem Tuning:**
+    ```bash
+    # tune2fs -l /dev/sdb1             # Check if journaling is enabled
+    # tune2fs -j /dev/sdb1             # Convert ext2 to ext3 (add journaling)
+    # tune2fs -O dir_index,has_journal,unit_bg /dev/sdb1 # Convert ext2 to ext4
+    ```
+
+5. **Filesystem Usage and Repair Tools:**
+    ```bash
+    # fuser -cu <device or partition name>  # See users accessing the file system
+    # fuser -cK <device or partition name>  # Kill user processes accessing the file system
+    ```
+
+---
+
+### **Journalctl Commands**
+
+- **View Logs:**
+    ```bash
+    # journalctl -n 5                     # Display last five lines of logs
+    # journalctl -p err                   # Display error messages
+    # journalctl --since "date" --until "date" # View logs between two dates
+    ```
+
+- **Change Log Directory:**
+    ```bash
+    # mkdir -p /var/log/journal
+    # chown root:systemd-journal /var/log/journal
+    # chmod g+s /var/log/journal
+    # killall -USR1 systemd-jjournald
+    
