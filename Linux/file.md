@@ -191,11 +191,11 @@ Example: # vim /etc/fstab
 UUID="{.......................}" /mnt/oracle ext4 defaults 0 0
 Esc+:+wq! (to save and exit)
 
-**23. What is the basic rule for swap size?**
+## **23. What is the basic rule for swap size?**
 (i) If the size of the RAM is less than or equal to 2GB, then the size of the swap = 2 x RAM size.
 (ii) If the size of the RAM is more than 2GB, then the size of the swap = 2GB + RAM size.
 
-**24. How to create a swap partition and mount it permanently?**
+## **24. How to create a swap partition and mount it permanently?**
 #free -m (to see the present swap size)
 #swapon -s (to see the swap usage)
 #fdisk <disk name> (to make a partition)
