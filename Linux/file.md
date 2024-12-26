@@ -218,23 +218,23 @@ Example: # swapon /dev/sdb2 (to activate /dev/sdb2 swap space)
 /dev/sdb2 swap swap defaults 0 0
 Esc+:+wq! (to save and exit)
 
-**25. What are the attributes of the file system?**
+## **25. What are the attributes of the file system?**
 (i) Inode number
 (ii) File name
 (iii) Data block
 
-**26. What is inode number and what is the use of it?**
+## **26. What is inode number and what is the use of it?**
 Inode numbers are the objects the Linux O/S uses to record the information about the file.
 Generally, an inode number contains two parts:
 (a) Inode first part contains information about the file, owner, its size, and its permissions.
 (b) Inode second part contains a pointer to data blocks associated with the file content.
 That's why using the inode number we can get the file information quickly.
 
-**27. How to check the integrity of a file system or consistency of the file system?**
+## **27. How to check the integrity of a file system or consistency of the file system?**
 By running the **# fsck <device or partition name>** command we can check the integrity of the file system.
 But before running the **fsck** command, first unmount that partition and then run the **fsck** command.
 
-**28. What is fsck check or what are the phases of the fsck?**
+## **28. What is fsck check or what are the phases of the fsck?**
 (a) First it checks blocks and sizes of the file system
 (b) Second it checks file system path names
 (c) Third it checks file system connectivity
