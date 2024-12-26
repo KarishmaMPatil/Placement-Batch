@@ -241,15 +241,15 @@ But before running the **fsck** command, first unmount that partition and then r
 (d) Fourth it checks file system reference counts (nothing but inode numbers)
 (e) Finally it checks file system occupied cylindrical groups
 
-**29. Why should the file system be unmounted before running the fsck command?**
+## **29. Why should the file system be unmounted before running the fsck command?**
 If we run **fsck** on mounted file systems, it leaves the file systems in an unusable state and also deletes the data.
 So, before running the **fsck** command the file system should be unmounted.
 
-**30. Which type of file system problems do you face?**
+# **30. Which type of file system problems do you face?**
 (i) File system full
 (ii) File system corrupted
 
-**31. How to extend the root file system which is not on LVM?**
+## **31. How to extend the root file system which is not on LVM?**
 By using the **# gparted** command we can extend the root partition; otherwise, we cannot extend the file systems which are not on LVM.
 
 **32. How to unmount a file system forcefully?**
