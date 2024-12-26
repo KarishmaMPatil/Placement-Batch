@@ -275,10 +275,10 @@ If the normal or not related to O/S file system is crashed, then restore it from
 ## **38. How to create a file with a particular size?**
 dd if=/dev/zero of=/orafile bs=1MB count=500 (to create 500MB size /orafile with 4KB block size)
 
-**39. How to find how many disks are attached to the system?**
+## **39. How to find how many disks are attached to the system?**
 fdisk -l (to see how many disks are attached to the system)
 
-**40. What is journaling?**
+## **40. What is journaling?**
 It is a dedicated area in the file system where all the changes are tracked when the system crashes. So the possibility of the file system corruption or crashes is less because of this journaling feature.
 
 # Linux Filesystem and Superblock Management
