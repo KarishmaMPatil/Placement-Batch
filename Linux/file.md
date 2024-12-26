@@ -174,7 +174,7 @@ Reasons a directory cannot unmount:
 Example: # e2label /dev/sdb1 oradisk
 # mount -l (view labels of mounted partitions)
 ```
-**21. How to mount a partition temporarily or permanently using label?**
+##**21. How to mount a partition temporarily or permanently using label?**
  mount LABEL=<label name> <mount point>
 Example: # mount LABEL=oradisk /mnt/oracle (to mount the oradisk label on /mnt/oracle directory)
 #vim /etc/fstab
