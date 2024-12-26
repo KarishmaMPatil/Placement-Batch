@@ -262,10 +262,10 @@ df -hT (command gives the file system type information)
 ## **34. How to know which file system occupies more space and the top 10 file systems?**
  df -h <device or partition name> | sort -r | head -10
 
-**35. What is the command to know the mounted file systems?**
+## **35. What is the command to know the mounted file systems?**
  mount or # cat /etc/mtab
 
-**36. How to know whether the file system is corrupted or not?**
+## **36. How to know whether the file system is corrupted or not?**
 First unmount the file systems and then run the **fsck** command on that file system.
 
 **37. How to recover if a file system is corrupted or crashed?**
