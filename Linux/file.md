@@ -873,4 +873,174 @@ eject -t
    mdadm --grow /dev/md0 --raid_device=3
    ```
 
-   
+   **34. How to configure RAID - 5 in Linux?**
+
+- To configure RAID - 5, minimum 3 disks are required and the partition id is "fd".
+- In every disk, approximately 25-30% of space is reserved for parity.
+- Reading and writing are very fast, so it produces high performance.
+- This uses the Stripping with parity concept.
+- If one disk fails, we can recover the data using the remaining two disks and parity.
+- If two disks fail, then we cannot recover the data.
+- So, there is no redundancy and fault tolerance in RAID - 5.
+
+**Example:** For example, if the data is 1, 2, 3, 4, 5, and 6, then:
+
+```
+1       
+3+     
+6       
+```
+
+```
+### 2
+### 3
+### 5+
+### 1+
+### 4
+### 5
+```
+
+Disk - 1 | Disk - 2 | Disk - 3
+---------|----------|----------
+1        | 2        | 3+
+4        | 5+       | 6
+
+If the Disk - 1 is `/dev/sdb`, the Disk - 2 is `/dev/sdc`, and the Disk - 3 is `/dev/sdd`:
+
+```
+# mdadm -Cv /dev/md0 -n 3 /dev/sdb /dev/sdc /dev/sdd -l 5 (to create the RAID - 5 using disks - 1, 2, and 3)
+# cat /proc/mdstat (to check if the RAID - 5 is created)
+# mkfs.ext4 /dev/md0 (to create the ext4 file system on the RAID - 5)
+# mkdir /mnt/raid5 (to create the RAID - 5 mount point)
+# mount /dev/md0 /mnt/raid5 (to mount RAID - 5 on the mount point)
+# mdadm -D /dev/md0 (to see the details of the RAID - 5 partition)
+# mdadm /dev/md0 -f /dev/sdb (to fail the disk manually)
+# mdadm /dev/md0 -r /dev/sdb (to remove the failed disk)
+# mdadm /dev/md0 -a /dev/sde (to add the new disk in place of the failed disk)
+# umount /mnt/raid5 (to unmount the RAID file system)
+# mdadm --stop /dev/md0 (to stop the RAID - 5 volume)
+# mdadm /dev/md0 --add /dev/sdf (to add a fourth disk to the RAID - 5 volume)
+# mdadm --grow /dev/md0 --raid-devices=4 (to grow the RAID - 5 file system)
+```
+
+**35. What are the main advantages of RAID - 5?**
+
+- RAID - 5 uses Stripping with parity and requires only three disks.
+- Because of Stripping, data reading and writing are fast.
+- By using parity, we can recover the data if one of the three disks fails.
+- The main advantage of RAID - 5 is fast writing, reading, redundancy, and fault tolerance with less expense.
+
+**36. How will you troubleshoot if one of the eight disks failed in LVM?**
+
+1. Unmount the file system.
+2. Add a new disk with the same size as the failed disk to the volume group.
+3. Move the data from the failed physical volume to the newly added physical volume.
+4. Remove the failed physical volume from the volume group.
+5. Finally, mount the file system.
+
+**37. What is `pvmove`, and when is it used in LVM?**
+
+- The `pvmove` command is used to move the data from a failed physical volume to a newly added physical volume.
+- This command is used when one of the physical volumes fails in the LVM.
+
+**38. How to inform the client and troubleshoot if the disk is full?**
+
+1. Check which files are accessing more disk space using `# du -h | sort -r`.
+2. If any temporary or junk files are present, remove them to make space.
+3. Inform the actual situation to the client and take permission to get the LUN from storage.
+4. Extend the file system by adding the LUN to the LVM.
+
+**39. Did you work on storage?**
+
+- Although I haven't worked on storage, I know the procedure to export LUN from storage to the client using the iSCSI target.
+- Then scan the LUN on the client side and add the LUN to the LVM.
+- I am familiar with storage hardware from EMC, NetApp, and others and aspire to work on storage, cloud, and virtualization.
+
+**40. I have four disks, each 1TB, in RAID - (1+0). How much disk space can I utilize in that RAID - (1+0)?**
+
+- RAID - (1+0) means Mirroring + Stripping.
+- It requires four disks: two disks for mirroring and two disks for stripping.
+- 5-10% disk space is used for superblock information.
+- Finally, we can utilize `2TB - (2TB x 10%)` disk space in that RAID - (1+0).
+
+**41. If two disks fail in RAID - (1+0), can we recover the data?**
+
+- RAID - (1+0) requires a minimum of four disks and uses Mirroring + Stripping.
+- If one disk fails, we can recover the data.
+- If two disks fail, we cannot recover the data.
+
+**42. How many types of disk space issues can we normally get?**
+
+1. Disk is full.
+2. Disk is failing or failed.
+3. File system corrupted or crashed.
+4. OS is not recognizing the remote LUNs when scanning, etc.
+
+**43. What is a link file, and how many types are there?**
+
+- A link file is a shortcut to the original file. Creating and removing (deleting) links between two files is known as managing links.
+- There are two types of link files in Linux:
+  1. Soft link
+  2. Hard link
+
+**44. What is a soft link, and how do you create it?**
+
+- A soft link is a shortcut file. If the original file is deleted, the soft link becomes unusable.
+- Soft links can be applied to both directories and files and can span across different file systems.
+- If a file is edited, the linked files are updated automatically.
+- The soft link and the original file have different inode numbers.
+- Command to create a soft link:
+
+```
+# ln -s <original file or directory> <link file or directory with path>
+Example: # ln -s /root/script /root/Desktop/script
+```
+
+**45. What is a hard link, and how do you create it?**
+
+- A hard link is a backup file. If the original file is deleted, the hard link remains unaffected.
+- Hard links can only be applied to files, not directories.
+- Both the original and hard link files must reside on the same file system.
+- The inode number is the same for both original and hard link files.
+- Command to create a hard link:
+
+```
+# ln <original file> <link file>
+```
+
+**46. What are the commands to search files and directories?**
+
+1. `locate`
+2. `find`
+
+**47. Explain the `locate` command and how to use it.**
+
+- `locate` searches the `locate` database stored in `/var/lib/mlocate/mlocate.db`.
+- Use `# updatedb` to update the `locate` database.
+- Command:
+
+```
+# locate <file name/directory name>
+```
+
+**48. Explain the `find` command and how to use it.**
+
+- The `find` command requires a specific location to search files or directories.
+- Syntax:
+
+```
+# find <location> <options> <file or directory>
+```
+
+- Common options:
+  - `-name`: search files and directories by name.
+  - `-size`: search for specific file sizes.
+  - `-user`: search files by owner.
+  - `-empty`: search for empty files or directories.
+
+- Examples:
+
+```
+# find / -name <file name> (search for files in the root directory)
+# find / -size +10M (search for files greater than 10MB)
+# find / -user student (search for files owned by the user "student")
