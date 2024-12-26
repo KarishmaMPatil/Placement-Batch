@@ -462,3 +462,190 @@ To adjust the reserved space percentage:
   # cd <file system mount point>
   # ls
   
+  # Logical Volume Management (LVM) Questions and Commands
+
+### **11. How to delete or remove the logical volume?**
+- Steps:
+  1. Unmount the file system: `# umount <mount point>`
+  2. Remove the entry in `/etc/fstab` file.
+  3. Remove the logical volume: `# lvremove </dev/vgname/lvname>`
+  4. Verify the logical volume removal: `# lvs` or `# lvdisplay`
+
+**Example**:
+```bash
+# umount <file system mount point>
+# vim /etc/fstab
+# lvremove </dev/vgname/lvname>
+# lvs or # lvdisplay
+```
+
+---
+
+### **12. How to delete or remove the volume group?**
+- Steps:
+  1. Ensure no logical volumes are mounted.
+  2. Delete the volume group: `# vgremove <vgname>`
+  3. Verify volume group removal: `# vgs` or `# vgdisplay`
+
+**Example**:
+```bash
+# umount <file system mount point>
+# vim /etc/fstab
+# vgremove <vgname>
+# vgs or # vgdisplay
+```
+
+---
+
+### **13. How to delete or remove the physical volume?**
+- Steps:
+  1. Ensure the physical volume is not part of any volume group.
+  2. Delete the physical volume: `# pvremove <pvname>`
+  3. Verify physical volume removal: `# pvs` or `# pvdisplay`
+
+**Example**:
+```bash
+# pvremove <pvname>
+# pvs or # pvdisplay
+```
+
+---
+
+### **14. How to restore the volume group which is removed mistakenly?**
+- Steps:
+  1. Unmount the file system: `# umount <file system mount point>`
+  2. Check the volume group backup list: `# vgcfgrestore --list <volume group name>`
+  3. Remove the logical volume: `# lvremove </dev/vgname/lvname>`
+  4. Restore the volume group from backup:
+     ```bash
+     # vgcfgrestore -f <backup file name> <volume group name>
+     ```
+  5. Check the status of the volume group: `# vgscan`
+  6. Check the status of the logical volume: `# lvscan`
+  7. Activate the volume group: `# vgchange -ay <volume group name>`
+  8. Activate the logical volume: `# lvchange -ay <logical volume name>`
+  9. Mount the logical volume file system: `# mount -a`
+
+**Example**:
+```bash
+# umount <file system mount point>
+# vgcfgrestore --list <volume group name>
+# lvremove </dev/vgname/lvname>
+# vgcfgrestore -f <backup file> <volume group name>
+# vgscan
+# lvscan
+# vgchange -ay <volume group name>
+# lvchange -ay <logical volume name>
+# mount -a
+```
+
+---
+
+### **15. How to change the volume group name and other parameters?**
+- Rename the volume group: `# vgrename <existing volume group name> <new volume group name>`
+- Limit the maximum number of logical volumes:
+  ```bash
+  # vgchange -l <number> <volume group>
+  ```
+- Limit the maximum number of physical volumes:
+  ```bash
+  # vgchange -p <number> <volume group>
+  ```
+- Change the block size:
+  ```bash
+  # vgchange -s <block size> <volume group>
+  ```
+
+**Examples**:
+```bash
+# vgchange -l 2 <vgname>
+# vgchange -p 2 <vgname>
+# vgchange -s 4 <vgname>
+```
+
+---
+
+### **16. How to change the logical volume name and other parameters?**
+- Rename the logical volume: `# lvrename <existing lvname> <new lvname>`
+- Set the logical volume to read-only: `# lvchange -pr <logical volume>`
+- Set the logical volume to read-write: `# lvchange -prw <logical volume>`
+
+**Example**:
+```bash
+# lvrename <existing lvname> <new lvname>
+# lvchange -pr <logical volume>
+# lvchange -prw <logical volume>
+```
+
+---
+
+### **17. How to disable the volume group and logical volume?**
+- Disable the volume group: `# vgchange -an <volume group>`
+- Disable the logical volume: `# lvchange -an <logical volume>`
+
+**Example**:
+```bash
+# vgchange -an <volume group>
+# lvchange -an <logical volume>
+```
+
+---
+
+### **18. How to take a backup of the volume group?**
+- Take a backup of all volume groups: `# vgcfgbackup`
+- Take a backup of a specific volume group: `# vgcfgbackup <volume group>`
+
+**Example**:
+```bash
+# vgcfgbackup
+# vgcfgbackup <volume group>
+```
+
+---
+
+### **19. What is the configuration file of the logical volume?**
+- View the configuration file: `# cat /etc/lvm/lvm.conf`
+
+**Example**:
+```bash
+# cat /etc/lvm/lvm.conf
+```
+
+---
+
+### **20. What are the locations of the logical volume and volume groups?**
+- Logical volume backup location: `/etc/lvm/backup`
+- Volume group backup location: `/etc/lvm/archive`
+
+**Example**:
+```bash
+# cd /etc/lvm/backup
+# cd /etc/lvm/archive
+```
+
+---
+
+### **21. How to know the current version of the LVM package?**
+- Command: `# rpm -qa lvm*`
+
+**Example**:
+```bash
+# rpm -qa lvm*
+```
+
+---
+
+### **22. What are the attributes of the volume group?**
+- Command: `# vgs`
+- Check UUID of the volume group: `# vgs -v`
+
+**Attributes**:
+- `w` - Writable
+- `z` - Extendable
+- `n` - Normal
+
+**Example**:
+```bash
+# vgs
+# vgs -v
+
