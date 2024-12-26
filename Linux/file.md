@@ -649,3 +649,228 @@ To adjust the reserved space percentage:
 # vgs
 # vgs -v
 
+## 23. How to Extend the Logical Volume to Maximum Disk Space and Half of the Disk Space
+
+### Maximum Disk Space:
+```bash
+lvextend -l +100%FREE <logical_volume>
+```
+This command extends the logical volume by adding the volume group's total available space.
+
+### Half of the Disk Space:
+```bash
+lvextend -l 50%<vgname><lvname>
+```
+This command extends the logical volume by adding 50% of the free space from the volume group.
+
+---
+
+## 24. How to Check on Which Physical Volume the Data is Writing in the Logical Volume
+
+### All Logical Volumes:
+```bash
+lvdisplay -m
+```
+### Specific Logical Volume:
+```bash
+lvdisplay -m <lvname>
+```
+
+---
+
+## 25. Types of File Systems Available
+- `ext2`: Second extended file system (default in RHEL 3 & 4)
+- `ext3`: Third extended file system (default in RHEL 5)
+- `ext4`: Fourth extended file system (default in RHEL 6)
+- `xfs`: Extended file system (default in RHEL 7)
+- `ufs`: Unix file system (default in Solaris)
+- `jfs`: Journal file system (default in IBM-AIX)
+- `hfs`: High performance file system (default in HP-UX)
+- `vxfs`: Veritas file system
+- `procfs`: Process file system (temporary)
+- `tempfs`: Temporary file system (temporary)
+- `cdfs`: Compact disk file system
+- `hdfs`: DVD file system
+- `iso9660`: To read CD/DVD `.iso` image files in Linux
+
+---
+
+## 26. How to Scan and Detect the LUNs Over the Network
+
+1. Check available fiber channels:
+   ```bash
+   ls /sys/class/fc_host
+   ```
+2. Scan and detect the LUNs:
+   ```bash
+   echo "---" > /sys/class/scsi_host/<lun_no>/scan
+   ```
+
+---
+
+## 27. How to Mount a Pen Drive in Linux
+
+1. Identify the pen drive name:
+   ```bash
+   lsusb
+   fdisk -l
+   ```
+2. Create a mount point:
+   ```bash
+   mkdir /mnt/pendrive
+   ```
+3. Mount the pen drive:
+   ```bash
+   mount <pen_drive_name> <mount_point>
+   ```
+4. Access the pen drive:
+   ```bash
+   cd /mnt/pendrive
+   ```
+
+---
+
+## 28. How to Mount a CD/DVD ROM Drive in Linux
+
+1. Create a mount point:
+   ```bash
+   mkdir /mnt/mycdrom
+   ```
+2. Mount the CD/DVD:
+   ```bash
+   mount /dev/cdrom /mnt/mycdrom
+   ```
+3. Access the CD/DVD:
+   ```bash
+   cd /mnt/mycdrom
+   ```
+
+---
+
+## 29. How to Mount `.iso` Image Files in Linux
+
+### Mount the `.iso` File:
+```bash
+mount -t iso9660 /root/rhel6.iso /iso -o ro,loop
+```
+### Burn the `.iso` File to CD/DVD:
+```bash
+cdrecord /root/Desktop/rhel6.iso
+```
+### Eject and Insert the CD/DVD Tray:
+```bash
+eject
+eject -t
+```
+
+---
+
+## 30. What is RAID?
+
+**RAID** stands for Redundant Array of Independent Disks. It provides fault tolerance and load balancing using concepts of stripping, mirroring, and parity.
+
+### Types of RAID:
+1. Hardware RAID (vendor-dependent, expensive)
+2. Software RAID (maintained by system administrators, less expensive)
+
+---
+
+## 31. Types of Software RAIDs and Their Requirements
+
+- **RAID-0**: Stripping (Minimum 2 disks required)
+- **RAID-1**: Mirroring (Minimum 2 disks required)
+- **RAID-10 (1+0)**: Mirroring + Stripping (Minimum 4 disks required)
+- **RAID-01 (0+1)**: Stripping + Mirroring (Minimum 4 disks required)
+- **RAID-5**: Stripping with parity (Minimum 3 disks required)
+
+---
+
+## 32. How to Configure RAID-0 in Linux
+
+### RAID-0 Configuration:
+- Minimum 2 disks required (partition ID: `fd`).
+- High performance but no redundancy.
+
+#### Steps:
+1. Create RAID-0:
+   ```bash
+   mdadm -Cv /dev/md0 -n 2 /dev/sdb /dev/sdc -l 0
+   ```
+2. Verify RAID creation:
+   ```bash
+   cat /proc/mdstat
+   ```
+3. Create a file system:
+   ```bash
+   mkfs.ext4 /dev/md0
+   ```
+4. Create a mount point:
+   ```bash
+   mkdir /mnt/raid0
+   ```
+5. Mount RAID-0:
+   ```bash
+   mount /dev/md0 /mnt/raid0
+   ```
+6. View details:
+   ```bash
+   mdadm -D /dev/md0
+   ```
+7. Fail and replace disks:
+   ```bash
+   mdadm /dev/md0 -f /dev/sdb
+   mdadm /dev/md0 -r /dev/sdb
+   mdadm /dev/md0 -a /dev/sdd
+   ```
+8. Stop and grow RAID:
+   ```bash
+   mdadm --stop /dev/md0
+   mdadm --grow /dev/md0 --raid_device=3
+   ```
+
+---
+
+## 33. How to Configure RAID-1 in Linux
+
+### RAID-1 Configuration:
+- Minimum 2 disks required (partition ID: `fd`).
+- High availability, redundancy, and fault tolerance.
+
+#### Steps:
+1. Create RAID-1:
+   ```bash
+   mdadm -Cv /dev/md0 -n 2 /dev/sdb /dev/sdc -l 1
+   ```
+2. Verify RAID creation:
+   ```bash
+   cat /proc/mdstat
+   ```
+3. Create a file system:
+   ```bash
+   mkfs.ext4 /dev/md0
+   ```
+4. Create a mount point:
+   ```bash
+   mkdir /mnt/raid1
+   ```
+5. Mount RAID-1:
+   ```bash
+   mount /dev/md0 /mnt/raid1
+   ```
+6. View details:
+   ```bash
+   mdadm -D /dev/md0
+   ```
+7. Fail and replace disks:
+   ```bash
+   mdadm /dev/md0 -f /dev/sdb
+   mdadm /dev/md0 -r /dev/sdb
+   mdadm /dev/md0 -a /dev/sdd
+   ```
+8. Stop and grow RAID:
+   ```bash
+   mdadm --stop /dev/md0
+   mdadm --grow /dev/md0 --raid_device=3
+   ```
+
+   
