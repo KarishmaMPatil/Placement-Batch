@@ -14,11 +14,6 @@ This README provides a collection of AWS interview scenario-based questions and 
   - Opt for `c5.large` for compute-intensive tasks like data analysis.
   - Choose `r5.xlarge` for memory-intensive databases.
 
----
-
-# AWS Interview Scenarios and Solutions
-
-This README provides a collection of AWS interview scenario-based questions and their detailed answers. The content is structured to help students and professionals understand common AWS topics and provide concise yet thorough responses during interviews.
 
 ---
 
