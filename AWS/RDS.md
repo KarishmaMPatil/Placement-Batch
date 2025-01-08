@@ -2,24 +2,28 @@
 
 ### Explain the primary database engines supported by Amazon RDS.
 **Interviewer:** What database engines does Amazon RDS support?
+
 **Candidate:** Amazon RDS supports multiple database engines, including MySQL, PostgreSQL, MariaDB, Oracle Database, Microsoft SQL Server, and Amazon Aurora. These engines cater to a variety of application needs, ranging from open-source to commercial databases.
 
 ---
 
 ### What are the benefits of using Amazon RDS for database management in AWS?
 **Interviewer:** Why would you choose Amazon RDS for managing databases?
+
 **Candidate:** Amazon RDS simplifies database management by handling routine tasks like provisioning, patching, backups, and scaling. It also offers high availability with Multi-AZ deployments, automatic backups, encryption, and Read Replicas for scaling read operations. This allows developers to focus on application development rather than database administration.
 
 ---
 
 ### What is a DB instance class, and how do you choose the appropriate instance class for your database?
 **Interviewer:** What is an RDS DB instance class?
+
 **Candidate:** A DB instance class determines the compute and memory capacity of an RDS instance. Choosing the right instance class depends on the workload requirements, such as CPU, memory, storage, and network performance. For example, burstable instances like `t3` are suitable for development environments, while `r5` instances are better for memory-intensive workloads.
 
 ---
 
 ### Explain the purpose of the parameter group and security group in RDS configurations.
 **Interviewer:** What roles do parameter groups and security groups play in RDS?
+
 **Candidate:** A parameter group defines runtime settings for database engines, such as connection limits and timeouts. A security group controls network access to the RDS instance by defining inbound and outbound rules.
 
 ---
