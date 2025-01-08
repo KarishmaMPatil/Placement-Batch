@@ -14,7 +14,6 @@ This README provides a collection of AWS interview scenario-based questions and 
   - Opt for `c5.large` for compute-intensive tasks like data analysis.
   - Choose `r5.xlarge` for memory-intensive databases.
 
-
 ---
 
 ## 2. What is an EC2 instance family, and when would you use one family over another?
