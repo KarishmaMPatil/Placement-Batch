@@ -30,12 +30,14 @@
 
 ### How can you secure data in Amazon RDS, and what encryption options are available?
 **Interviewer:** How do you ensure data security in RDS?
+
 **Candidate:** RDS ensures data security using encryption at rest with AWS KMS and encryption in transit using SSL/TLS. Additionally, fine-grained access control can be achieved using IAM roles and security groups.
 
 ---
 
 ### Explain the concepts of Read Replicas and Multi-AZ deployments in Amazon RDS.
 **Interviewer:** What are Read Replicas and Multi-AZ deployments?
+
 **Candidate:** Read Replicas improve read performance by replicating data to multiple instances, which can handle read queries. Multi-AZ deployments enhance availability by creating a standby instance in a different Availability Zone, ensuring failover in case of primary instance failure.
 
 ---
