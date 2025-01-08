@@ -44,36 +44,42 @@
 
 ### What is the purpose of Amazon RDS Auto Scaling, and how can you configure it to handle varying workloads?
 **Interviewer:** How does Auto Scaling help in RDS?
+
 **Candidate:** RDS Auto Scaling automatically adjusts the storage and IOPS based on demand, ensuring that the database can handle workload fluctuations efficiently. It can be configured using the console, CLI, or CloudFormation templates.
 
 ---
 
 ### How do you create and manage automated backups for an Amazon RDS instance?
 **Interviewer:** How do backups work in RDS?
+
 **Candidate:** Automated backups in RDS can be enabled during instance creation or modified later. AWS automatically creates backups during the backup window and retains them for the specified retention period, which can range from 1 to 35 days.
 
 ---
 
 ### What is the difference between automated backups and database snapshots in RDS?
 **Interviewer:** How are automated backups and snapshots different?
+
 **Candidate:** Automated backups are system-managed backups created automatically, while snapshots are user-initiated backups. Automated backups are retained for a defined retention period, whereas snapshots are retained indefinitely until deleted by the user.
 
 ---
 
 ### Explain the process of restoring an RDS instance from a snapshot or point-in-time recovery.
 **Interviewer:** How do you restore an RDS instance?
+
 **Candidate:** To restore from a snapshot, you create a new RDS instance using the snapshot as the source. For point-in-time recovery, AWS uses automated backups to restore the database to a specific point within the retention period.
 
 ---
 
 ### How can you migrate an existing database to Amazon RDS, and what AWS services or tools can assist in this process?
 **Interviewer:** What are the steps for migrating a database to RDS?
+
 **Candidate:** Database migration to RDS can be done using tools like AWS Database Migration Service (DMS), AWS Schema Conversion Tool (SCT), or native database export/import methods. The choice depends on the source database and its compatibility with RDS.
 
 ---
 
 ### What is AWS Database Migration Service (DMS), and how does it simplify database migration tasks?
 **Interviewer:** What is the role of AWS DMS in database migration?
+
 **Candidate:** AWS DMS enables seamless migration of databases to RDS by supporting heterogeneous (e.g., Oracle to PostgreSQL) and homogeneous migrations (e.g., MySQL to MySQL). It provides continuous replication, minimal downtime, and robust data validation.
 
 ---
