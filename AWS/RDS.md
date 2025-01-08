@@ -86,4 +86,5 @@
 
 ### Discuss best practices for maintaining and optimizing the performance and cost of Amazon RDS instances over time.
 **Interviewer:** How do you ensure optimal performance and cost-efficiency in RDS?
+
 **Candidate:** Best practices include monitoring performance metrics (e.g., CPU, memory, IOPS) with CloudWatch, optimizing instance types and storage classes, using Read Replicas for read-heavy workloads, and implementing backup and retention policies to avoid unnecessary costs.
