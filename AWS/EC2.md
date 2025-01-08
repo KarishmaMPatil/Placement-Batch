@@ -1,5 +1,3 @@
-# Amazon EC2 Interview Questions 
-
 # AWS Interview Scenarios and Solutions
 
 This README provides a collection of AWS interview scenario-based questions and their detailed answers. The content is structured to help students and professionals understand common AWS topics and provide concise yet thorough responses during interviews.
