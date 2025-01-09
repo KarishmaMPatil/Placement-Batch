@@ -64,3 +64,4 @@
 ### 29. "For example, let's consider an EKS cluster and a node group. In Terraform, there are separate configurations for creating the EKS cluster and the node group. When running `terraform apply`, the process fails with an error stating that the EKS cluster is not active. How can this issue be resolved?"
 ---
 ### 30. What is terraform graph?
+
