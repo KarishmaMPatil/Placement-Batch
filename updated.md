@@ -24,3 +24,43 @@
 9. **Shared Directory**: What is a shared directory in Jenkins?
 
 10. **Parameters in Jenkins**: What are parameters in Jenkins?
+
+### 11. What is a data type in Jenkins?
+---
+### 12. How can I upload my plugin into Jenkins?
+---
+### 13. What is the difference between GitHub webhook and Poll SCM in Jenkins?
+---
+### 14. In Python, what is the difference between mutable and immutable objects?
+---
+### 15. What is the subprocess module?
+---
+### 16. What is Boto3?
+---
+### 17. How many ways are there to create a Lambda function?
+---
+### 18. Display the unique numbers in the list `[1, 2, 3, 2, 5, 6, 5, 4, 1, 3]`
+---
+### 19. What kind of backups does Velero store?
+---
+### 20. What is a rollout restart?
+---
+### 21. What is the difference between `kubectl get events` and `kubectl describe pod`?
+---
+### 22. What is the difference between a liveness probe and a readiness probe?
+---
+### 23. What does "terraform local-exec" do?
+---
+### 24. What is the null_resource in Terraform?
+---
+### 25. What are addons in Terraform?
+---
+### 26. "When a Terraform file becomes corrupted, how can you restore it?"
+---
+### 27. "In two environments, production and development, I have the same set of files. However, in the production environment, I don't want to create a database, but in the development environment, I want both an EC2 instance and an RDS instance. How can I ensure that only the EC2 instance is created in the development environment while both the EC2 instance and RDS instance are created in the production environment?"
+---
+### 28. What is count in Terraform?
+---
+### 29. "For example, let's consider an EKS cluster and a node group. In Terraform, there are separate configurations for creating the EKS cluster and the node group. When running `terraform apply`, the process fails with an error stating that the EKS cluster is not active. How can this issue be resolved?"
+---
+### 30. What is terraform graph?
