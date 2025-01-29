@@ -2,25 +2,140 @@
 
 **1. Suppose you have an application deployed inside EKS, and your application needs some secrets to run. These secrets are stored in the Secrets Manager service in AWS. How will you provision this so that your application can access those secrets and configurations?**
 
+Enable IAM Roles for Service Accounts (IRSA): This allows fine-grained permissions for Kubernetes pods.
+
+Create an IAM Role: Attach a policy that grants access to Secrets Manager.
+
+Associate the IAM Role with a Kubernetes Service Account: Modify the pod spec to use this service account.
+
+Use AWS SDK or Secrets Manager CSI Driver: Fetch secrets using the AWS SDK or mount secrets directly as files in the pod.
+
 **2. Suppose you have a database that needs to be deployed on Kubernetes, and it needs to be highly available. How would you achieve that?**
+
+To ensure high availability:
+
+Use a StatefulSet for database deployment.
+
+Deploy a PersistentVolumeClaim (PVC) for each replica.
+
+Configure multi-zone Persistent Volumes for resilience.
 
 **3. Suppose you have a situation where your database needs to run on a specific node in Kubernetes and be highly available. How would you achieve that?**
 
+Use nodeSelector or node affinity to schedule the pod on a specific node.
+
+Apply Pod Anti-Affinity to distribute replicas across multiple nodes.
+
+Use Taints and Tolerations to ensure only database workloads run on that node.
+
 **4. What is Terraform local?**
+local in Terraform is used to define reusable variables within a module.
+
+Example:
+locals {
+  env_name = "production"
+}
+output "environment" {
+  value = local.env_name
+}
 
 **5. Suppose you have a situation where you have three environments: prod, staging, and dev. All of these environments have similar services; the only difference is the specifications of these services. For example, development has lower-spec machines compared to production. How would you manage this kind of infrastructure using Terraform, and how would you manage the state file?**
 
+Use Terraform Workspaces to manage different environments.
+
+Maintain separate state files for each environment.
+
+Store state files in S3 with DynamoDB locking for safety.
+
+Use Terraform Modules to reuse infrastructure definitions.
+
+Leverage Environment Variables and Input Variables for customization.
+
 **6. Suppose you have a system with an apex domain abc.com and multiple environments such as dev.abc.com and prod.abc.com. Additionally, there are multiple subdomains for each environment, such as api.dev.abc.com. How would you structure this kind of system in Route 53?**
+
+Use a single hosted zone for example.com.
+
+Create subdomains for environments: dev.example.com, staging.example.com, prod.example.com.
+
+Use Alias Records or CNAMEs to point to load balancers or services.
 
 **7. Where would you use a Load Balancer and a NodePort in a Kubernetes cluster?**
 
+LoadBalancer: When exposing services externally (e.g., ALB, NLB in AWS).
+
+NodePort: When exposing services internally or for development.
+
 **8. Why can't you create an AMI from stopped instances?**
+
+If you attempt to create an AMI from a running instance, there is a risk of data inconsistency due to ongoing operations that might not be fully committed to the disk at the time of the snapshot
 
 **9. What is a shared directory in Jenkins?**
 
+A directory accessible by multiple Jenkins jobs, often /var/jenkins_home
+
 **10. What are parameters in Jenkins?**
 
+In Jenkins, parameters are used to allow users to input values before or during the execution of a Jenkins job (or pipeline).
+
+These values can customize the job's behavior,such as determining which code branch to build,providing configuration values,or setting environment-specific parameters.
+
+Parameters are especially useful in automated build or deployment pipelines to introduce flexibility and user interaction.
+
+String Parameter:
+
+A simple text field where the user can input any string value.
+Useful for passing variables such as version numbers, branch names, or environment names.
+
+Example:
+
+Name: Branch
+Default Value: main
+
+Boolean Parameter:
+
+A checkbox that allows the user to choose between true or false.
+Often used to toggle options or features on or off.
+
+Example:
+
+Name: Deploy to Production
+Default Value: false
+
+Choice Parameter:
+
+A dropdown menu where the user can select from a predefined list of options.
+Useful for choosing among several predefined configurations, environments, or versions.
+
+Example:
+
+Name: Environment
+
+Choices:
+Development
+Staging
+Production
+
 **11. What is a data type in Jenkins?**
+
+In Jenkins, a data type typically refers to the kind of value a variable or parameter can hold or process.
+
+It essentially defines the type of data being used in Jenkins pipelines, jobs, or other configurations.
+
+String: A sequence of characters. Strings are commonly used for text-based values, such as file names or parameters.
+
+Example: param = "example_value"
+
+Integer: Whole numbers without any decimal point.
+
+Example: numRetries = 5
+
+Boolean: Represents a true or false value.
+
+Example: isDeployable = true
+
+List or Array: A collection of values. Jenkins pipelines support lists/arrays, especially when handling multiple items.
+
+Example: branches = ["master", "develop", "feature-xyz"]
 
 **12. How can I upload my plugin into Jenkins?**
 
