@@ -64,7 +64,7 @@ You need to install a missing tool.
 
 **Question:** We need `jq` for parsing JSON. Can you install it?
 
-**Answer:** No problem. Let me install it: `sudo apt install jq`. Done! It’s ready to use.
+**Answer:** No problem. Let me install it: `sudo apt install jq -y`. Done! It’s ready to use.
 
 ---
 
