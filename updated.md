@@ -268,3 +268,56 @@ Example: branches = ["master", "develop", "feature-xyz"]
 **76. What is caching in CloudFront, and what is cache invalidation?**
 
 **77. What is a CRD in Kubernetes?**
+
+How do you set environment variables?
+52. What is the `PATH` variable?
+53. How do you make environment variables persistent?
+54. What is the difference between `export` and `set`?
+55. How do you view all environment variables?
+56. What is cron in Linux?
+57. How do you schedule a cron job?
+58. What is the format of crontab?
+59. How do you list current cron jobs?
+60. What is `at` command used for?
+61. Where are system logs stored?
+62. What is `syslog`?
+63. How do you monitor log files in real-time?
+64. What is log rotation?
+65. How do you search logs for specific patterns?
+66. How do you install packages using `apt`?
+67. What is `yum` used for?
+68. How do you update all packages?
+69. What's the difference between `apt` and `apt-get`?
+70. How do you remove packages?
+71. What is a shell script?
+72. How do you make a script executable?
+73. What is the shebang line?
+74. How do you pass arguments to a script?
+75. What are conditional statements in bash?
+76. How do you mount and unmount filesystems?
+77. What is `/etc/fstab`?
+78. How do you check filesystem disk space?
+79. What is `fsck` used for?
+80. How do you create and manage users?
+81. How do you troubleshoot high CPU usage?
+82. What is `iostat` used for?
+83. How do you monitor network traffic?
+84. What is `vmstat`?
+85. How do you analyze memory usage?
+86. How do you secure SSH connections?
+87. What is `sudo` and how does it work?
+88. How do you configure firewall rules?
+89. What is SELinux?
+90. How do you check for rootkits?
+91. How do you configure static IP addresses?
+92. What is `iptables`?
+93. How do you set up port forwarding?
+94. What is network bonding?
+95. How do you troubleshoot DNS issues?
+96. What is the difference between containers and VMs?
+97. How do you install Docker on Linux?
+98. What are Linux namespaces?
+99. How do you manage Linux containers?
+100. What is systemd and how does it work
+
+
