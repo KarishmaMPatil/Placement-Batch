@@ -1,323 +1,263 @@
-### Scenario-Based Interview Questions
+# 🧠 DevOps Scenario-Based & Technical Interview Questions
 
-**1. Suppose you have an application deployed inside EKS, and your application needs some secrets to run. These secrets are stored in the Secrets Manager service in AWS. How will you provision this so that your application can access those secrets and configurations?**
+---
 
-Enable IAM Roles for Service Accounts (IRSA): This allows fine-grained permissions for Kubernetes pods.
+## ### Scenario-Based Questions
 
-Create an IAM Role: Attach a policy that grants access to Secrets Manager.
+### 1. Suppose you have an application deployed inside EKS, and your application needs some secrets to run. These secrets are stored in the Secrets Manager service in AWS. How will you provision this so that your application can access those secrets and configurations?
 
-Associate the IAM Role with a Kubernetes Service Account: Modify the pod spec to use this service account.
+### 2. Suppose you have a database that needs to be deployed on Kubernetes, and it needs to be highly available. How would you achieve that?
 
-Use AWS SDK or Secrets Manager CSI Driver: Fetch secrets using the AWS SDK or mount secrets directly as files in the pod.
+### 3. Suppose you have a situation where your database needs to run on a specific node in Kubernetes and be highly available. How would you achieve that?
 
-**2. Suppose you have a database that needs to be deployed on Kubernetes, and it needs to be highly available. How would you achieve that?**
+### 4. What is Terraform local?
 
-To ensure high availability:
+### 5. Suppose you have a situation where you have three environments: prod, staging, and dev. All of these environments have similar services; the only difference is the specifications of these services. How would you manage this kind of infrastructure using Terraform, and how would you manage the state file?
 
-Use a StatefulSet for database deployment.
+### 6. Suppose you have a system with an apex domain abc.com and multiple environments such as dev.abc.com and prod.abc.com. Additionally, there are multiple subdomains for each environment, such as api.dev.abc.com. How would you structure this kind of system in Route 53?
 
-Deploy a PersistentVolumeClaim (PVC) for each replica.
+### 7. Where would you use a Load Balancer and a NodePort in a Kubernetes cluster?
 
-Configure multi-zone Persistent Volumes for resilience.
+### 8. Why can't you create an AMI from stopped instances?
 
-**3. Suppose you have a situation where your database needs to run on a specific node in Kubernetes and be highly available. How would you achieve that?**
+### 9. What is a shared directory in Jenkins?
 
-Use nodeSelector or node affinity to schedule the pod on a specific node.
+### 10. What are parameters in Jenkins?
 
-Apply Pod Anti-Affinity to distribute replicas across multiple nodes.
+### 11. What is a data type in Jenkins?
 
-Use Taints and Tolerations to ensure only database workloads run on that node.
+### 12. How can I upload my plugin into Jenkins?
 
-**4. What is Terraform local?**
-local in Terraform is used to define reusable variables within a module.
+### 13. What is the difference between GitHub webhook and Poll SCM in Jenkins?
 
-Example:
-locals {
-  env_name = "production"
-}
-output "environment" {
-  value = local.env_name
-}
+### 14. In Python, what is the difference between mutable and immutable objects?
 
-**5. Suppose you have a situation where you have three environments: prod, staging, and dev. All of these environments have similar services; the only difference is the specifications of these services. For example, development has lower-spec machines compared to production. How would you manage this kind of infrastructure using Terraform, and how would you manage the state file?**
+### 15. What is the subprocess module?
 
-Use Terraform Workspaces to manage different environments.
+### 16. What is boto3?
 
-Maintain separate state files for each environment.
+### 17. How many ways are there to create a Lambda function?
 
-Store state files in S3 with DynamoDB locking for safety.
+### 18. Display the unique numbers in the list `[1, 2, 3, 2, 5, 6, 5, 4, 1, 3]`.
 
-Use Terraform Modules to reuse infrastructure definitions.
+### 19. What kind of backups does Velero store?
 
-Leverage Environment Variables and Input Variables for customization.
+### 20. What is a rollout restart?
 
-**6. Suppose you have a system with an apex domain abc.com and multiple environments such as dev.abc.com and prod.abc.com. Additionally, there are multiple subdomains for each environment, such as api.dev.abc.com. How would you structure this kind of system in Route 53?**
+### 21. What is the difference between `kubectl get events` and `kubectl describe pod`?
 
-Use a single hosted zone for example.com.
+### 22. What is the difference between a liveness probe and a readiness probe?
 
-Create subdomains for environments: dev.example.com, staging.example.com, prod.example.com.
+### 23. What does `terraform local-exec` do?
 
-Use Alias Records or CNAMEs to point to load balancers or services.
+### 24. What is the `null_resource` in Terraform?
 
-**7. Where would you use a Load Balancer and a NodePort in a Kubernetes cluster?**
+### 25. What are addons in Terraform?
 
-LoadBalancer: When exposing services externally (e.g., ALB, NLB in AWS).
+### 26. When a Terraform file becomes corrupted, how can you restore it?
 
-NodePort: When exposing services internally or for development.
+### 27. In two environments, production and development, I have the same set of files. However, in the production environment, I don't want to create a database, but in the development environment, I want both an EC2 instance and an RDS instance. How can I ensure this using Terraform?
 
-**8. Why can't you create an AMI from stopped instances?**
+### 28. What is `count` in Terraform?
 
-If you attempt to create an AMI from a running instance, there is a risk of data inconsistency due to ongoing operations that might not be fully committed to the disk at the time of the snapshot
+### 29. For example, let's consider an EKS cluster and a node group. When running `terraform apply`, the process fails with an error stating that the EKS cluster is not active. How can this issue be resolved?
 
-**9. What is a shared directory in Jenkins?**
+### 30. What is `terraform graph`?
 
-A directory accessible by multiple Jenkins jobs, often /var/jenkins_home
+### 31. What is `terraform state list` command?
 
-**10. What are parameters in Jenkins?**
+### 32. What is the purpose of the `terraform mv` command?
 
-In Jenkins, parameters are used to allow users to input values before or during the execution of a Jenkins job (or pipeline).
+### 33. What does the `terraform rm` command do?
 
-These values can customize the job's behavior,such as determining which code branch to build,providing configuration values,or setting environment-specific parameters.
+### 34. How would you configure Jenkins to grant specific access permissions to different teams?
 
-Parameters are especially useful in automated build or deployment pipelines to introduce flexibility and user interaction.
+### 35. What is the master-slave architecture in Jenkins, and how does it work?
 
-String Parameter:
+### 36. In Jenkins, do you install plugins on the master node or the slave node?
 
-A simple text field where the user can input any string value.
-Useful for passing variables such as version numbers, branch names, or environment names.
+### 37. How do you manage secrets stored in AWS SSM Service for the CI process in Jenkins?
 
-Example:
+### 38. What is a shared library in Jenkins?
 
-Name: Branch
-Default Value: main
+### 39. What will be there in a slave?
 
-Boolean Parameter:
+### 40. You are doing CI, but this CI process requires some secrets. How can you manage secrets in Jenkins?
 
-A checkbox that allows the user to choose between true or false.
-Often used to toggle options or features on or off.
+### 41. What if some secrets are stored in AWS SSM service?
 
-Example:
+### 42. How do you typically create a Jenkins pipeline?
 
-Name: Deploy to Production
-Default Value: false
+### 43. How can you deploy a Jenkins pipeline?
 
-Choice Parameter:
+### 44. How can you achieve parallel stages in Jenkins?
 
-A dropdown menu where the user can select from a predefined list of options.
-Useful for choosing among several predefined configurations, environments, or versions.
+### 45. Let's say you want to integrate some Jenkins APIs with Kubernetes events. How can you achieve this?
 
-Example:
+### 46. How do you reduce the Docker image size?
 
-Name: Environment
+### 47. Which command lists all processes running inside your VM?
 
-Choices:
-Development
-Staging
-Production
+### 48. What is the difference between spot instances and reserved instances? Which is more cost-effective?
 
-**11. What is a data type in Jenkins?**
+### 49. Let's say there are two regions, Mumbai and Singapore. There is one AMI present in the Singapore region, and you want to use that AMI in the Mumbai region, but the AMI is encrypted using a CMK. How can you do this?
 
-In Jenkins, a data type typically refers to the kind of value a variable or parameter can hold or process.
+### 50. What is the difference between a public subnet and a private subnet?
 
-It essentially defines the type of data being used in Jenkins pipelines, jobs, or other configurations.
+### 51. What is the difference between a Network ACL (NACL) and a Security Group (SG)?
 
-String: A sequence of characters. Strings are commonly used for text-based values, such as file names or parameters.
+### 52. What is the difference between stateless and stateful?
 
-Example: param = "example_value"
+### 53. What is a customer gateway?
 
-Integer: Whole numbers without any decimal point.
+### 54. What is the difference between CloudWatch Alarms and EventBridge?
 
-Example: numRetries = 5
+### 55. There is an EC2 instance with a process running on it. You want to trigger an alarm if that process goes down. How can you set this up?
 
-Boolean: Represents a true or false value.
+### 56. You want to create an S3 replication policy. What are the prerequisites for it?
 
-Example: isDeployable = true
+### 57. What is the purpose of GitLab?
 
-List or Array: A collection of values. Jenkins pipelines support lists/arrays, especially when handling multiple items.
+### 58. How do you integrate auto-trigger builds?
 
-Example: branches = ["master", "develop", "feature-xyz"]
+### 59. Which trigger do you set up for webhooks, and what URL do you mention in GitHub?
 
-**12. How can I upload my plugin into Jenkins?**
+### 60. You have a Jenkins pipeline that should auto-trigger on a repository push. How would you set it up?
 
-**13. What is the difference between GitHub webhook and Poll SCM in Jenkins?**
+### 61. You have two Jenkins jobs listening to different repositories. If you push to repo A, which job will trigger?
 
-**14. In Python, what is the difference between mutable and immutable objects?**
+### 62. How do you ensure high availability of Jenkins, and what happens if the master goes down?
 
-**15. What is the subprocess module?**
+### 63. Is there any Jenkins backup that happens daily?
 
-**16. What is boto3?**
+### 64. What is Git as?
 
-**17. How many ways are there to create a Lambda function?**
+### 65. How is SonarQube integrated with Jenkins?
 
-**18. Display the unique numbers in the list [1, 2, 3, 2, 5, 6, 5, 4, 1, 3].**
+### 66. Every time you build your application, do you reinstall dependencies like Java each time?
 
-**19. What kind of backups does Velero store?**
+### 67. Explain a multistage Dockerfile.
 
-**20. What is a rollout restart?**
+### 68. What is a layer in Dockerfiles?
 
-**21. What is the difference between kubectl get events and kubectl describe pod?**
+### 69. What is an image manifest file?
 
-**22. What is the difference between a liveness probe and a readiness probe?**
+### 70. What are CIDR ranges?
 
-**23. What does "terraform local-exec" do?**
+### 71. How do you decide on the CIDR ranges?
 
-**24. What is the null_resource in Terraform?**
+### 72. I want 510 usable hosts, so I used a /23 CIDR and created one subnet. What about the rest of the IPs?
 
-**25. What are addons in Terraform?**
+### 73. What kind of data is hosted in S3? Is it updated frequently or infrequently?
 
-**26. When a Terraform file becomes corrupted, how can you restore it?**
+### 74. Can you explain the process of hosting content on an S3 bucket?
 
-**27. In two environments, production and development, I have the same set of files. However, in the production environment, I don't want to create a database, but in the development environment, I want both an EC2 instance and an RDS instance. How can I ensure that only the EC2 instance is created in the development environment while both the EC2 instance and RDS instance are created in the production environment?**
+### 75. I don't want to use CloudFront for direct access to content. What are the alternatives?
 
-**28. What is count in Terraform?**
+### 76. What is caching in CloudFront, and what is cache invalidation?
 
-**29. For example, let's consider an EKS cluster and a node group. In Terraform, there are separate configurations for creating the EKS cluster and the node group. When running terraform apply, the process fails with an error stating that the EKS cluster is not active. How can this issue be resolved?**
+### 77. What is a CRD in Kubernetes?
 
-**30. What is terraform graph?**
+---
 
-**31. What is terraform state list command?**
+## ### Linux & Shell Scripting
 
-**32. What is the purpose of the terraform mv command?**
+### 78. How do you set environment variables?
 
-**33. What does the terraform rm command do?**
+### 79. What is the `PATH` variable?
 
-**34. How would you configure Jenkins to grant specific access permissions to different teams? For instance, if you have multiple folders (a, b, c) and you want to allow Team B to access and perform actions only in folder B, how would you achieve this?**
+### 80. How do you make environment variables persistent?
 
-**35. What is the master-slave architecture in Jenkins, and how does it work?**
+### 81. What is the difference between `export` and `set`?
 
-**36. In Jenkins, do you install plugins on the master node or the slave node?**
+### 82. How do you view all environment variables?
 
-**37. How do you manage secrets stored in AWS SSM Service for the CI process in Jenkins?**
+### 83. What is cron in Linux?
 
-**38. What is a shared library in Jenkins?**
+### 84. How do you schedule a cron job?
 
-**39. What will be there in a slave?**
+### 85. What is the format of crontab?
 
-**40. You are doing CI, but this CI process requires some secrets. How can you manage secrets in Jenkins?**
+### 86. How do you list current cron jobs?
 
-**41. What if some secrets are stored in AWS SSM service?**
+### 87. What is the `at` command used for?
 
-**42. How do you typically create a Jenkins pipeline?**
+### 88. Where are system logs stored?
 
-**43. How can you deploy a Jenkins pipeline?**
+### 89. What is `syslog`?
 
-**44. How can you achieve parallel stages in Jenkins?**
+### 90. How do you monitor log files in real-time?
 
-**45. Let's say you want to integrate some Jenkins APIs. For example, you have a Jenkins pipeline, and there is a Kubernetes pod. You want to trigger an API or a Jenkins pipeline using Jenkins API based on an event inside your Kubernetes, such as an XYZ event. How can you achieve this?**
+### 91. What is log rotation?
 
-**46. How do you reduce the Docker image size?**
+### 92. How do you search logs for specific patterns?
 
-**47. For example, you just want to know what processes are running inside your VM. The top command shows only the top processes, but you want a list of all processes. Which command would you use?**
+### 93. How do you install packages using `apt`?
 
-**48. What is the difference between spot instances and reserved instances? Which is more cost-effective?**
+### 94. What is `yum` used for?
 
-**49. Let's say there are two regions, Mumbai and Singapore. There is one AMI present in the Singapore region, and you want to use that AMI in the Mumbai region, but the AMI is encrypted using a CMK. How can you do this?**
+### 95. How do you update all packages?
 
-**50. What is the difference between a public subnet and a private subnet?**
+### 96. What's the difference between `apt` and `apt-get`?
 
-**51. What is the difference between a Network ACL (NACL) and a security group (SG)?**
+### 97. How do you remove packages?
 
-**52. What is the difference between stateless and stateful?**
+### 98. What is a shell script?
 
-**53. What is a customer gateway?**
+### 99. How do you make a script executable?
 
-**54. What is the difference between CloudWatch Alarms and EventBridge?**
+### 100. What is the shebang line?
 
-**55. For example, let's say there is an EC2 instance with a process running on it. You want to trigger an alarm if that process goes down. How can you set this up?**
+### 101. How do you pass arguments to a script?
 
-**56. You want to create an S3 replication policy. What are the prerequisites for it?**
+### 102. What are conditional statements in bash?
 
-**57. What is the purpose of GitLab?**
+### 103. How do you mount and unmount filesystems?
 
-**58. How do you integrate auto-trigger builds?**
+### 104. What is `/etc/fstab`?
 
-**59. Which trigger do you set up for webhooks, and what URL do you mention in GitHub?**
+### 105. How do you check filesystem disk space?
 
-**60. Can you elaborate on this process: You have a Jenkins pipeline that you want to auto-trigger on a certain repository when a push occurs on that repository.**
+### 106. What is `fsck` used for?
 
-**61. I have a Jenkins job and have set up two Jenkins jobs that listen to different repositories. Now, you are setting only the GitHub with the Jenkins URL. If you push to repo A, which job will trigger? Both or only one?**
+### 107. How do you create and manage users?
 
-**62. How do you ensure high availability of Jenkins, and what happens if the master goes down?**
+### 108. How do you troubleshoot high CPU usage?
 
-**63. Is there any Jenkins backup that happens daily?**
+### 109. What is `iostat` used for?
 
-**64. What is GIT as?**
+### 110. How do you monitor network traffic?
 
-**65. How is SonarQube integrated with Jenkins?**
+### 111. What is `vmstat`?
 
-**66. Every time you build your application, do you go ahead and install Java, deploying it 10 times a day?**
+### 112. How do you analyze memory usage?
 
-**67. Explain a multistage Dockerfile.**
+### 113. How do you secure SSH connections?
 
-**68. What is a layer in Dockerfiles?**
+### 114. What is `sudo` and how does it work?
 
-**69. What is an image manifest file?**
+### 115. How do you configure firewall rules?
 
-**70. What are CIDR ranges?**
+### 116. What is SELinux?
 
-**71. How do you decide on the CIDR ranges?**
+### 117. How do you check for rootkits?
 
-**72. I want 510 usable hosts, so I used a /23 CIDR and created one subnet. What about the rest of the IPs?**
+### 118. How do you configure static IP addresses?
 
-**73. What kind of data is hosted in S3? Is it updated frequently or infrequently?**
+### 119. What is `iptables`?
 
-**74. Can you explain the process of hosting content on an S3 bucket?**
+### 120. How do you set up port forwarding?
 
-**75. I don't want to use CloudFront for direct access to content. What are the alternatives?**
+### 121. What is network bonding?
 
-**76. What is caching in CloudFront, and what is cache invalidation?**
+### 122. How do you troubleshoot DNS issues?
 
-**77. What is a CRD in Kubernetes?**
+### 123. What is the difference between containers and VMs?
 
-How do you set environment variables?
-52. What is the `PATH` variable?
-53. How do you make environment variables persistent?
-54. What is the difference between `export` and `set`?
-55. How do you view all environment variables?
-56. What is cron in Linux?
-57. How do you schedule a cron job?
-58. What is the format of crontab?
-59. How do you list current cron jobs?
-60. What is `at` command used for?
-61. Where are system logs stored?
-62. What is `syslog`?
-63. How do you monitor log files in real-time?
-64. What is log rotation?
-65. How do you search logs for specific patterns?
-66. How do you install packages using `apt`?
-67. What is `yum` used for?
-68. How do you update all packages?
-69. What's the difference between `apt` and `apt-get`?
-70. How do you remove packages?
-71. What is a shell script?
-72. How do you make a script executable?
-73. What is the shebang line?
-74. How do you pass arguments to a script?
-75. What are conditional statements in bash?
-76. How do you mount and unmount filesystems?
-77. What is `/etc/fstab`?
-78. How do you check filesystem disk space?
-79. What is `fsck` used for?
-80. How do you create and manage users?
-81. How do you troubleshoot high CPU usage?
-82. What is `iostat` used for?
-83. How do you monitor network traffic?
-84. What is `vmstat`?
-85. How do you analyze memory usage?
-86. How do you secure SSH connections?
-87. What is `sudo` and how does it work?
-88. How do you configure firewall rules?
-89. What is SELinux?
-90. How do you check for rootkits?
-91. How do you configure static IP addresses?
-92. What is `iptables`?
-93. How do you set up port forwarding?
-94. What is network bonding?
-95. How do you troubleshoot DNS issues?
-96. What is the difference between containers and VMs?
-97. How do you install Docker on Linux?
-98. What are Linux namespaces?
-99. How do you manage Linux containers?
-100. What is systemd and how does it work
+### 124. How do you install Docker on Linux?
 
+### 125. What are Linux namespaces?
 
+### 126. How do you manage Linux containers?
+
+### 127. What is `systemd`, and how does it work?
