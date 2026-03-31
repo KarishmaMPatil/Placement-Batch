@@ -8,7 +8,7 @@ A new employee joins the company, and you need to create a user account with a h
 **Question:** Hey, we just hired John. Can you set up his account and make sure he has access to the developer group?
 
 **Answer:** Sure, let me do that:
-1. I'll create his account: `sudo useradd -m -g developer john`.
+1. I'll create his account: `sudo useradd -m -g developer john`.  usermod -aG developer john
 2. Set his password: `sudo passwd john`.
 3. And finally, verify: `cat /etc/passwd | grep john`.
 Done! He's all set.
